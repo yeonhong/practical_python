@@ -19,10 +19,10 @@ def isphonenumber(text):
 
 
 if __name__ == '__main__':
-    testNumber = '415-555-4242'
-    print(testNumber + 'is phone number?')
-    print(isphonenumber(testNumber))
+    message = 'Call me at 415-343-5666 tomorrow. 324-555-6213 is my office'
+    for i in range(len(message)):
+        chunk = message[i:i+12]
+        if isphonenumber(chunk):
+            print('phone number found:' + chunk)
+    print('done')
 
-    testNumber = 'test is good'
-    print(testNumber + 'is phone number?')
-    print(isphonenumber(testNumber))
