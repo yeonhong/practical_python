@@ -1,3 +1,5 @@
+import re
+
 def isphonenumber(text):
     if len(text) != 12:
         return False
@@ -18,6 +20,7 @@ def isphonenumber(text):
     return True
 
 
+
 if __name__ == '__main__':
     message = 'Call me at 415-343-5666 tomorrow. 324-555-6213 is my office'
     for i in range(len(message)):
@@ -25,4 +28,8 @@ if __name__ == '__main__':
         if isphonenumber(chunk):
             print('phone number found:' + chunk)
     print('done')
+
+    phoneNumRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
+    mo = phoneNumRegex.search('my dd is 432-455-2333')
+    print('Phone number found:' + mo.group())
 
