@@ -22,14 +22,38 @@ def isphonenumber(text):
 
 
 if __name__ == '__main__':
-    message = 'Call me at 415-343-5666 tomorrow. 324-555-6213 is my office'
-    for i in range(len(message)):
-        chunk = message[i:i+12]
-        if isphonenumber(chunk):
-            print('phone number found:' + chunk)
-    print('done')
+    phoneNumRegex = re.compile(r'(\(\d\d\d\)) (\d\d\d-\d\d\d\d)')
+    mo = phoneNumRegex.search('my dd is (432) 455-2333')
+    print(mo.group(1))
+    print(mo.group(2))
+    print(mo.group(0))
 
-    phoneNumRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
-    mo = phoneNumRegex.search('my dd is 432-455-2333')
-    print('Phone number found:' + mo.group())
+    areaCode, mainNumber = mo.groups()
+    print(areaCode)
+    print(mainNumber)
+
+    print('? operation----------')
+    phoneRegex = re.compile(r'(\d\d\d-)?\d\d\d-\d\d\d\d')
+    mo = phoneRegex.search(('My number is 334-234-5233'))
+    print(mo.group())
+    mo = phoneRegex.search(('My number is 234-5233'))
+    print(mo.group())
+
+    batRegex = re.compile(r'Bat(wo)?man')
+    mo = batRegex.search('The Story of Batman')
+    print(mo.group())
+    mo = batRegex.search('The Story of Batwoman')
+    print(mo.group())
+
+    print('| operation----------')
+    heroRegex = re.compile(r'Bat(man|mobile|copter|bat)')
+    mo1 = heroRegex.search('Batman and Tina Fey.')
+    print(mo1.group())
+
+    mo = heroRegex.search('Batmobile lost a wheel')
+    print(mo.group())
+    print(mo.group(1))
+
+
+
 
